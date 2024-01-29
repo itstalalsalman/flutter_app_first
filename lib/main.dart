@@ -11,7 +11,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.deepPurple[200],
+        body: Center(
+          child: Container(
+            height: 300,
+            width: 300,
+            decoration: BoxDecoration(
+               color: Colors.green,
+               borderRadius: BorderRadius.circular(20),
+            ),
+            padding: EdgeInsets.all(25),
+            child: Text("Talal Salman",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              )
+            )
+          ),
+        ),
+      ),
     );
   }
 }
