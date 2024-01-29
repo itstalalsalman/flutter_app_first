@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
         //   leading: Icon(Icons.menu),
         //   actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
         // ),
-        body: Column(children: [
-          Container(height: 200, width: 200, color: Colors.deepPurple,),
-          Container(height: 200, width: 200, color: Colors.deepPurple[400],),
-          Container(height: 200, width: 200, color: Colors.deepPurple[200],),
+        body: ListView(scrollDirection: Axis.horizontal,children: [
+          Container(width: 350, color: Colors.deepPurple,),
+          Container(width: 350, color: Colors.deepPurple[400],),
+          Container(width: 350, color: Colors.deepPurple[200],),
 
         ],
         ),
