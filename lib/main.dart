@@ -13,22 +13,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        //backgroundColor: Colors.deepPurple[200],
-        // appBar: AppBar(
-        //   title: Text("My App Bar"),
-        //   backgroundColor: Colors.deepPurple,
-        //   elevation: 0,
-        //   leading: Icon(Icons.menu),
-        //   actions: [IconButton(onPressed: () {}, icon: Icon(Icons.logout))],
-        // ),
-        body: ListView(scrollDirection: Axis.horizontal,children: [
-          Container(width: 350, color: Colors.deepPurple,),
-          Container(width: 350, color: Colors.deepPurple[400],),
-          Container(width: 350, color: Colors.deepPurple[200],),
+        body: GridView.builder(
+          itemCount: 64, 
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4), 
+          itemBuilder: (context, index) => Container(
+            color: Colors.deepPurple,
+            margin: EdgeInsets.all(2),
+          ),
 
-        ],
+          )
         ),
-      ),
-    );
+      );
   }
 }
