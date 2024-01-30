@@ -8,6 +8,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  void userTapped(){
+    print("asdasasd");
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,9 +20,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: GestureDetector(
-            onTap: () {
-              print("User Tapped");
-            },
+            onTap: userTapped,
             child: Container(
               height: 200,
               width: 200,
