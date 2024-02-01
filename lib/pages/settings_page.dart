@@ -7,6 +7,8 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return Scaffold(
+      body: Center(child: Text("Settings", style: TextStyle(fontSize: 40),),),
+    );
   }
 }
