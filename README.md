@@ -15,4 +15,4 @@ From line 192 - 221
 
 ## On Search
 
-![Normal On Search](./lib/assets/ss/search_onSearch.JPG.JPG) 
+![Normal On Search](./lib/assets/ss/search_onSearch.JPG) 
