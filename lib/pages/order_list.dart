@@ -40,7 +40,9 @@ class FoodOrderList extends StatefulWidget {
 
 class _FoodOrderListState extends State<FoodOrderList> {
   List<FoodOrder> foodOrders = []; // Initially empty
+  List<FoodOrder> filteredOrders = [];
   double _refreshPadding = 0.0;
+  final TextEditingController _searchController = TextEditingController();
 
   Future<void> _refreshOrders() async {
     await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
@@ -68,6 +70,22 @@ class _FoodOrderListState extends State<FoodOrderList> {
   void initState() {
     super.initState();
     _loadInitialData(); // For initially populating the foodOrders list
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose(); // Dispose the controller
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    String query = _searchController.text.toLowerCase();
+    setState(() {
+      filteredOrders = foodOrders.where((order) {
+        return order.restaurantName.toLowerCase().contains(query);
+      }).toList();
+    });
   }
 
   // Function to load initial data (replace with Firebase logic later)
@@ -99,7 +117,7 @@ class _FoodOrderListState extends State<FoodOrderList> {
           restaurantAddress: "Gaziomanpasa, Ankara",
         ),
         FoodOrder(
-          restaurantName: "McDonalds",
+          restaurantName: "Kofteci Yusuf",
           orderStatus: "Delivered",
           orderDate: "2024-01-25",
           orderTime: "18:30",
@@ -107,7 +125,7 @@ class _FoodOrderListState extends State<FoodOrderList> {
           restaurantAddress: "Gaziomanpasa, Ankara",
         ),
         FoodOrder(
-          restaurantName: "KFC",
+          restaurantName: "Tavuk Dunyasi",
           orderStatus: "Delivered",
           orderDate: "2024-01-27",
           orderTime: "18:30",
@@ -115,7 +133,7 @@ class _FoodOrderListState extends State<FoodOrderList> {
           restaurantAddress: "Kizilay, Ankara, Cankaya",
         ),
         FoodOrder(
-          restaurantName: "Antakya Durum",
+          restaurantName: "Popeyes",
           orderStatus: "Preparing",
           orderDate: "2023-02-01",
           orderTime: "18:30",
@@ -123,7 +141,7 @@ class _FoodOrderListState extends State<FoodOrderList> {
           restaurantAddress: "Esat Caddesi, Ankara",
         ),
         FoodOrder(
-          restaurantName: "KFC",
+          restaurantName: "Kofteci Yusuf",
           orderStatus: "Cancelled",
           orderDate: "2024-01-27",
           orderTime: "18:30",
@@ -131,7 +149,7 @@ class _FoodOrderListState extends State<FoodOrderList> {
           restaurantAddress: "Kizilay, Ankara, Cankaya",
         ),
         FoodOrder(
-          restaurantName: "Antakya Durum",
+          restaurantName: "Coffy",
           orderStatus: "Preparing",
           orderDate: "2023-02-01",
           orderTime: "18:30",
@@ -150,7 +168,8 @@ class _FoodOrderListState extends State<FoodOrderList> {
       onRefresh: _refreshOrders,
       backgroundColor: Colors.orange,
       color: Colors.white,
-      // Track pull progress !** the notification predicate was enable to as allow the padding space on pull down but only ios have it built through another library
+      //!** the notification predicate was enable to as allow the padding space on pull down but only ios have it built through another library
+      // Track pull progress 
       notificationPredicate: (notification) {
         if (notification is ScrollStartNotification) {
           setState(() {
@@ -167,14 +186,49 @@ class _FoodOrderListState extends State<FoodOrderList> {
         }
         return true; 
       },
-      child: ListView.builder(
-        // Apply the dynamic padding
-        scrollDirection: Axis.vertical,
-        padding: EdgeInsets.only(top: _refreshPadding), 
-        itemCount: foodOrders.length,
-        itemBuilder: (context, index) {
-          return FoodOrderContainer(foodOrder: foodOrders[index]);
-        },
+      child: Column(
+        children: [
+          Padding( 
+            //!*********** Text Field To Search Implemented *********!
+            padding: const EdgeInsets.all(10.0),
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search Restaurant',
+                hintStyle: const TextStyle(color: Colors.white), 
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(left: 12.0), // Add left padding
+                  child: Icon(Icons.search, color: Colors.white),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(color: Colors.grey), // Custom outline color
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(color: Colors.orange),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: const BorderSide(color: Colors.white),
+                ),
+                filled: true, 
+                fillColor: Colors.orange, 
+              ),
+              
+              style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            //!*********** Text Field To Search Finished *********!
+          ),
+          Expanded( // Add Expanded to make list take remaining space
+            child: ListView.builder( 
+              itemCount: filteredOrders.length, // Use filteredOrders
+              itemBuilder: (context, index) {
+                return FoodOrderContainer(foodOrder: filteredOrders[index]);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

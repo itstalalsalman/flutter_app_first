@@ -2,15 +2,17 @@
 
 A new Flutter project.
 
-## Getting Started
+## New Changes Implemented
 
-This project is a starting point for a Flutter application.
+Implemented a new search Bar which filters restaurant by their names. 
 
-A few resources to get you started if this is your first Flutter project:
+The changes are found under the lib/pages/order_list.dart
+From line 192 - 221
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## No Search
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Normal On Search](./lib/assets/ss/search_normal.JPG) 
+
+## On Search
+
+![Normal On Search](./lib/assets/ss/search_onSearch.JPG.JPG) 
