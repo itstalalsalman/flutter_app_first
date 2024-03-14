@@ -1,18 +1,21 @@
-# flutte_app
 
-A new Flutter project.
+# Features Implemented
+## Verification Page
+A whole new verificaion_page.dart class is implemented to design the page on which when the basla button is pressed the navigator takes the user to the orders page.
 
-## New Changes Implemented
+The verification page design can be found under the path lib/pages/verification_page.dart
+On the main.dart when application runs the verification page is showed.
 
-Implemented a new search Bar which filters restaurant by their names. 
+## Images Added 
+Certain images are added for the logo import from figma to design the page.
+They can be found under lib/images/
 
-The changes are found under the lib/pages/order_list.dart
+## Updated pubsec.yaml 
+The file has been adjusted to add the images and add the fonts from the figma file.
+
 From line 192 - 221
 
-## No Search
+# Image
 
-![Normal On Search](./lib/assets/ss/search_normal.JPG) 
+![Verification Page](./lib/images/verification_page.JPG) 
 
-## On Search
-
-![Normal On Search](./lib/assets/ss/search_onSearch.JPG) 

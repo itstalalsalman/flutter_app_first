@@ -5,7 +5,7 @@ class OrderListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       
       body: Center(
         child: FoodOrderList(),
@@ -33,6 +33,8 @@ class FoodOrder {
 }
 
 class FoodOrderList extends StatefulWidget {
+  const FoodOrderList({super.key});
+
   @override
   // ignore: library_private_types_in_public_api
   _FoodOrderListState createState() => _FoodOrderListState();
