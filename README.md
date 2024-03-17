@@ -9,7 +9,7 @@ This can be found under /lib/pages/verification_page.dart
 The verification page design can be found under the path lib/pages/verification_page.dart
 On the main.dart when application runs the verification page is showed.
 
-![Main Page](./lib/images/verification_page.JPG) 
+![Main Page](./lib/images/first_page.JPG) 
 
 ## Images Added 
 Certain images are added for the logo import from figma to design the page.
